@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <div class="background">
+        <div class="container">
+            <div class="header">
+                <img src="logo.svg" alt="Logo" class="logo">
+            </div>
+            <form id="loginForm">
+                <div class="input-group">
+                    <i class="bi bi-person icon"></i>
+                    <input type="email" id="username" placeholder="USERNAME" required>
+                </div>
+                <div class="input-group">
+                    <i class="bi bi-lock icon"></i>
+                    <input type="password" id="password" placeholder="PASSWORD" required>
+                    <div class="error-message" id="passwordError"></div>
+                </div>
+                <button type="submit">LOGIN</button>
+            </form>
+            <a href="#" class="forgot-password">Forgot password?</a>
+        </div>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const passwordError = document.getElementById('passwordError');
+
+        if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/.test(password)) {
+            passwordError.textContent = "Wrong combination";
+            passwordError.style.display = 'block';
+        } else {
+            passwordError.style.display = 'none';
+            if (username === 'test@luxpmsoft.com' && password === 'test1234!') {
+                window.location.href = 'blank.html';
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    text: 'The provided password is wrong!',
+                });
+            }
+        }
+    });
+    </script>
+</body>
+</html>
